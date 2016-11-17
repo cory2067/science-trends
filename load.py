@@ -1,3 +1,5 @@
+#Move files from downloads to the records folder as they appear
+
 import os 
 from time import sleep
 
@@ -12,5 +14,5 @@ while True:
 	for file in added:
 		if '.bib' in file and not (".crdownload" in file):
 			print("Found records " + str(record) + " - " + str(record + 500))
-			os.rename("/home/cor/Downloads/" + file, "/home/cor/Desktop/records/" + str(record) + " - " + str(record + 499))
+			os.rename("/home/cor/Downloads/" + file, "/home/cor/Desktop/science-trends/records/" + str(record) + " - " + str(record + 499))
 			record += 500

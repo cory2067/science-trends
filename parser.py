@@ -1,10 +1,14 @@
+#Construct sqlite database from bibtex
+
 import sqlite3
 import os
+import sys
 import bibtexparser
-conn = sqlite3.connect('records2.db')
+
+conn = sqlite3.connect('records3.db')
 c = conn.cursor()
 
-files = os.listdir("/home/cor/Desktop/records")
+files = os.listdir("/home/cor/Desktop/science-trends/records")
 for name in files:
 	print(name)
 	with open("records/" + name) as f:
@@ -57,6 +61,10 @@ for name in files:
 			keywords = entry['keyword']
 		except KeyError:
 			print("no keywords")
+		try:
+			keywords = entry['keywords-plus']
+		except KeyError:
+			print("no plus keywords")
 	
 		vals = (entry['ID'][4:], title, int(entry['year']), doi, issn, cited, journal, keywords, abstract)
 		

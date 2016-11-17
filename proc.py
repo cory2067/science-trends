@@ -1,10 +1,22 @@
+#Calculate graph data from the database
+
 import sqlite3
 import math
 
 conn = sqlite3.connect("records2.db")
 c = conn.cursor()
 
-c.execute("select year, cited from entries where abstract LIKE '%fusion%'")
+s_abs = True
+s_key = False
+abstract = "tokamak"
+keyword = "tokamak"
+if s_abs:
+	query = "select year, cited from entries where abstract LIKE '%{}%'".format(abstract)
+elif s_key:
+	query = "select year, cited from entries where keyword LIKE '%{}%'".format(keyword)
+else:
+	query = "select year, cited from entries"
+c.execute(query)
 
 score = {}
 num = 0
@@ -18,6 +30,7 @@ for entry in c.fetchall():
 		score[entry[0]] = 6 + 1*entry[1]
 
 print(total/num)
+print("total: " + str(num))
 out = ''
 for year,pt in score.items():
 	out += str(year) + "," + str(pt) +'\n'

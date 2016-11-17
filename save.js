@@ -1,3 +1,5 @@
+//Script to be injected into webpage to extract data
+
 record = 1;
 ready = 1;
 

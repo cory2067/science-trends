@@ -62,7 +62,7 @@ for name in files:
 		except KeyError:
 			print("no keywords")
 		try:
-			keywords = entry['keywords-plus']
+			keywords += entry['keywords-plus']
 		except KeyError:
 			print("no plus keywords")
 	

@@ -3,13 +3,13 @@
 import sqlite3
 import math
 
-conn = sqlite3.connect("records2.db")
+conn = sqlite3.connect("records.db")
 c = conn.cursor()
 
-s_abs = True
-s_key = False
+s_abs = False
+s_key = True
 abstract = "tokamak"
-keyword = "tokamak"
+keyword = "science"
 if s_abs:
 	query = "select year, cited from entries where abstract LIKE '%{}%'".format(abstract)
 elif s_key:
